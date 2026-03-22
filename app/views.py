@@ -6,8 +6,11 @@ This file contains the routes for your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
+from app import db
+from flask import flash, render_template, request, redirect, url_for
 from app.forms import PropertyForm
+from werkzeug.utils import secure_filename
+import os
 from app.models import Property
 
 
@@ -38,10 +41,30 @@ def properties():
 def create_property():
     
     form = PropertyForm()
-    if form.validate_on_submit():
-        # Handle file upload and save property to database
-        pass
-    return render_template('create.html', form=form)
+    if request.method == "GET":
+        return render_template('create.html', form=form)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            title=form.title.data
+            ptype=form.type.data
+            no_of_bedrooms=form.no_of_bedrooms.data
+            no_of_bathrooms=form.no_of_bathrooms.data
+            location=form.location.data
+            description=form.description.data
+            price=form.price.data
+            picture=form.picture.data
+            if picture:
+                file = secure_filename(picture.filename)
+                picture.save(os.path.join(app.config['UPLOAD_FOLDER'], file))
+
+            new_property = Property(title=title, type=ptype, no_of_bedrooms=no_of_bedrooms, no_of_bathrooms=no_of_bathrooms, location=location, description=description, price=price, image_filename=file)
+            db.session.add(new_property)
+            db.session.commit()
+            flash('Property created successfully!', 'success')
+            return redirect(url_for('properties'))
+            # Save property to database
+
+        return render_template('create.html', form=form)
 
 ###
 # The functions below should be applicable to all Flask apps.

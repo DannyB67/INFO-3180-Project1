@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1 class="display-5 fw-bold">Properties</h1>
+{% include 'flash_messages.html' %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for property in properties %}
+    <div class="col">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='uploads/' ~ property.image_filename) }}" class="card-img-top" alt="{{ property.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ property.title }}</h5>
+                <p class="card-text">{{ property.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Type: {{ property.type }}</li>
+                <li class="list-group-item">Bedrooms: {{ property.no_of_bedrooms }}</li>
+                <li class="list-group-item">Bathrooms: {{ property.no_of_bathrooms }}</li>
+                <li class="list-group-item">Location: {{ property.location }}</li>
+                <li class="list-group-item">Price: ${{ property.price }}</li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
