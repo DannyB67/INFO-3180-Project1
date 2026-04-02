@@ -1,5 +1,12 @@
 {% extends "base.html" %}
-
+{% block css %}
+<style>
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
 {% block main %}
 <h1 class="display-5 fw-bold">Properties</h1>
 {% include 'flash_messages.html' %}

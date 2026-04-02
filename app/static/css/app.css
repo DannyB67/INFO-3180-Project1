@@ -1,6 +1,15 @@
 body {
     padding-top: 5rem;
 }
-header {
-    background-color: #15B8A7;
+.bg-primary {
+    background-color: #15B8A7 !important;
+}
+
+.btn-primary {
+    background-color: #15B8A7 !important;
+    border-color: #15B8A7 !important;
+}
+
+body {
+    background-color: #F3F4F6;
 }

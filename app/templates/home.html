@@ -5,8 +5,9 @@
 {% block main %}
 <div class="p-5 mb-4 bg-light rounded-3 border">
   <div class="container-fluid py-5">
-    <h1 class="display-5 fw-bold">Hello, world!</h1>
-    <p>This is a simple starter template for a Flask Application</p>
+    <h1 class="display-5 fw-bold">Property Page</h1>
+    <p>Welcome to the Property Page! Click the button below to begin exploring the property of your choice. When you find a property you like, click on it to view more details. On the property detail page, you can learn more about the property and contact the realtor.</p>
+    <a href="{{ url_for('properties') }}" class="btn btn-primary btn-lg">View Properties</a>
   </div>
 </div>
 {% endblock %}
