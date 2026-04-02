@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h1 class="display-5 fw-bold">{{ property.title }}</h1>
+    <div class="card mb-3">
+        <img src="{{ url_for('static', filename='uploads/' ~ property.image_filename) }}" class="card-img-top" alt="{{ property.title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ property.title }}</h5>
+            <p class="card-text">{{ property.description }}</p>
+            <p class="card-text">Type: {{ property.type }}</p>
+            <p class="card-text">Bedrooms: {{ property.no_of_bedrooms }}</p>
+            <p class="card-text">Bathrooms: {{ property.no_of_bathrooms }}</p>
+            <p class="card-text">Location: {{ property.location }}</p>
+            <p class="card-text">Price: ${{ "{:,.2f}".format(property.price) }}</p>
+            <a href="#" class="btn btn-secondary">Email Realtor</a>
+        </div>
+    </div>
+{% endblock %}

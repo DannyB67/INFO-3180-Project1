@@ -31,11 +31,13 @@ def about():
 
 @app.route('/properties/<int:property_id>')
 def property_detail(property_id):
-    pass
+    property = Property.query.get(property_id)
+    return render_template('property.html', property=property)
 
 @app.route('/properties')
 def properties():
-    pass
+    properties = get_properties()
+    return render_template('properties.html', properties=properties)
 
 @app.route('/properties/create', methods=['GET', 'POST'])
 def create_property():
@@ -65,6 +67,9 @@ def create_property():
             # Save property to database
 
         return render_template('create.html', form=form)
+
+def get_properties():
+    return Property.query.all()
 
 ###
 # The functions below should be applicable to all Flask apps.

@@ -5,22 +5,17 @@
 {% include 'flash_messages.html' %}
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for property in properties %}
-    <div class="col">
-        <div class="card h-100">
-            <img src="{{ url_for('static', filename='uploads/' ~ property.image_filename) }}" class="card-img-top" alt="{{ property.title }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ property.title }}</h5>
-                <p class="card-text">{{ property.description }}</p>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ url_for('static', filename='uploads/' ~ property.image_filename) }}" class="card-img-top" alt="{{ property.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ property.title }}</h5>
+                    <p class="card-text">Location: {{ property.location }}</p>
+                    <p class="card-text">Price: ${{ "{:,.2f}".format(property.price) }}</p>
+                    <a href="{{ url_for('property_detail', property_id=property.id) }}" class="btn btn-primary">View Details</a>
+                </div>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Type: {{ property.type }}</li>
-                <li class="list-group-item">Bedrooms: {{ property.no_of_bedrooms }}</li>
-                <li class="list-group-item">Bathrooms: {{ property.no_of_bathrooms }}</li>
-                <li class="list-group-item">Location: {{ property.location }}</li>
-                <li class="list-group-item">Price: ${{ property.price }}</li>
-            </ul>
         </div>
-    </div>
     {% endfor %}
 </div>
 {% endblock %}
